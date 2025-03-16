@@ -47,7 +47,7 @@ function Home() {
   return (
     <div className="w-full bg-[#F5F5F5] min-h-screen">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-10 ">
+      <div className="container mx-auto px-4 pt-10 pb-10">
         <div className="flex flex-col md:flex-row items-center">
           {/* Left Content */}
           <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
