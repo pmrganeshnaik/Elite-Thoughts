@@ -5,7 +5,6 @@ import { Outlet } from 'react-router'
 function FullBlogLayout() {
   return (
     <div>
-        {/* <BlogDetail/> */}
         <Outlet/>
     </div>
   )

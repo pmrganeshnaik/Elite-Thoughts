@@ -6,13 +6,13 @@ function useGetById() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const url = `http://localhost:3000/posts/${id}`;
+  const url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(`${url}/posts/${id}`);
         setData(response.data.Data);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -10,12 +10,11 @@ function Post() {
     category: ""
   });
 
+  const url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
-  
   const formRef = useRef(null);
   const headerRef = useRef(null);
-
   const categories = ["Finance-Business", "Health", "Travel", "Food", "General"];
 
   function handleChanges(e) {
@@ -28,7 +27,7 @@ function Post() {
     setStatus({ type: "", message: "" });
 
     try {
-      const response = await axios.post("http://localhost:3000/posts", blog);
+      const response = await axios.post(`${url}/posts`, blog);
       console.log("Post created: " + response.data);
       setStatus({
         type: "success",

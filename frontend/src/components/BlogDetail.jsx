@@ -5,13 +5,13 @@ import useGetById from "../customHooks/useGetById";
 
 function BlogDetail() {
   const masterKey = "ganesh";
-  const url = 'http://localhost:3000/posts/'
+  const url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
   const navigate = useNavigate();
   const {data, loading} = useGetById()
 
   const handleDelete =  async (blogId) => {
    try {
-    const response =  await axios.delete(`${url}${blogId}?key=${masterKey}`);
+    const response =  await axios.delete(`${url}/posts/${blogId}?key=${masterKey}`);
     if (response.status === 204) {
       alert("Post deleted successfully!");
       window.history.back();
