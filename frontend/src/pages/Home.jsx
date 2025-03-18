@@ -152,20 +152,7 @@ function Home() {
           </div>
         </div>
       </div>
-      
-      {/* Call to Action */}
-      <div className="bg-[#0A192F] py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to share your elite thoughts?</h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">Join our growing community of thought leaders and make your voice heard.</p>
-          <button 
-            onClick={() => navigate('/new-post')}
-            className="px-8 py-3 bg-[#FFD700] text-[#0A192F] font-semibold rounded-full hover:bg-[#FFD700]/90 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
-          >
-            Start Writing Today
-          </button>
-        </div>
-      </div>
+
       
       {/* CSS for background pattern */}
       <style jsx>{`

@@ -6,7 +6,6 @@ import cors from "cors";
 import pg from "pg";
 import bodyParser from "body-parser";
 
-
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,7 +32,9 @@ db.connect();
 // GET All posts
 app.get("/posts", async (req, res) => {
   try {
-    const result = await db.query("select * from blog");
+    const result = await db.query(
+      "SELECT * FROM public.blog ORDER BY id DESC "
+    );
     res.status(200).json({ success: true, Data: result.rows });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -47,8 +48,10 @@ app.get("/posts/:id", async (req, res) => {
       parseInt(req.params.id),
     ]);
 
-    if(!result.rows[0].id){
-        res.status(404).json({ success: false, message : "By this id post is not exitist"});
+    if (!result.rows[0].id) {
+      res
+        .status(404)
+        .json({ success: false, message: "By this id post is not exitist" });
     }
     res.status(200).json({ success: true, Data: result.rows });
   } catch (error) {
@@ -59,18 +62,23 @@ app.get("/posts/:id", async (req, res) => {
 //CHALLENGE 3: POST a new post
 app.post("/posts", async (req, res) => {
   try {
-
     const newPost = {
       title: req.body.title,
       content: req.body.content,
       author: req.body.author,
-      category : req.body.category,
+      category: req.body.category,
       date: new Date(),
     };
 
     const result = await db.query(
       "INSERT INTO blog (title, content, author, category, date) VALUES($1, $2, $3, $4, $5)  RETURNING *",
-      [newPost.title, newPost.content, newPost.author,newPost.category ,newPost.date]
+      [
+        newPost.title,
+        newPost.content,
+        newPost.author,
+        newPost.category,
+        newPost.date,
+      ]
     );
 
     res.status(200).json({ success: true, Data: result.rows });
@@ -90,7 +98,7 @@ app.patch("/posts/:id", async (req, res) => {
       title: req.body.title || exitistingPost.title,
       content: req.body.content || exitistingPost.content,
       author: req.body.author || exitistingPost.author,
-      category : req.body.category || exitistingPost.category,
+      category: req.body.category || exitistingPost.category,
       date: new Date(),
     };
     const result = await db.query(

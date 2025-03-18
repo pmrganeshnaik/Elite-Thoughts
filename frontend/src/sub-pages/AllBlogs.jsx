@@ -2,17 +2,16 @@ import React from "react";
 import { Link } from "react-router";
 import useGetReq from "../customHooks/useGetReq.js";
 
-function General() {
+function AllBlogs() {
   const data = useGetReq();
-  const filterData = data.filter(d => d.category === "General");
   
   return (
     <div className="container mx-auto px-4 py-8 ">
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filterData.length > 0 ? (
-          filterData.map((item, index) => (
+        {data.length > 0 ? (
+          data.map((item, index) => (
             <Link 
-              to={`${item.id.toString()}`} 
+              to={`${item.category.toString()}/${item.id.toString()}`} 
               key={item.id}
               className="group"
             >
@@ -48,4 +47,4 @@ function General() {
   );
 }
 
-export default General;
+export default AllBlogs;

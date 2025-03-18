@@ -21,6 +21,9 @@ function View() {
           <NavLink to={'Food'}>
             <li className='btn-royal'>Food</li>
           </NavLink>
+          <NavLink to={'General'}>
+            <li className='btn-royal'>General & Others</li>
+          </NavLink>
         </ul>
       </nav>
     </div>

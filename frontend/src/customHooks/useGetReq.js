@@ -15,7 +15,7 @@ function useGetReq() {
     };
 
     fetchData();
-  }, []);
+  },[]);
 
   return data; 
 }

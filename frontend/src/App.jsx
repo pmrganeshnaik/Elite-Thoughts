@@ -14,7 +14,10 @@ import Health from './sub-pages/Health'
 import Finance_Bissness from './sub-pages/Finance_Bissness'
 import Travel from './sub-pages/Travel'
 import Food from './sub-pages/Food'
-import BlogDetail from './sub-pages/blogDetail'
+import AllBlogs from './sub-pages/AllBlogs'
+import BlogDetail from './components/BlogDetail'
+import EditBlog from './components/EditBlog'
+import FullBlogLayout from './layout/FullBlogLayout'
 
 
 function App() {
@@ -24,12 +27,16 @@ function App() {
           <Route index element={<Home/>}/>
           <Route path='about' element={<About/>}/>
           <Route path='views' element={<ViewLayout/>}>
-              <Route index element={<General/>}/>
+              <Route index element={<AllBlogs/>}/>
               <Route path='Finance-Business' element={<Finance_Bissness/>}/>
               <Route path='Health' element={<Health/>}/>
               <Route path='Travel' element={<Travel/>}/>
               <Route path='Food' element={<Food/>}/>
-              <Route path=':category/:id' element={<BlogDetail/>}/>
+              <Route path='General' element={<General/>}/>
+              <Route path=':category/:id' element={<FullBlogLayout/>}>
+                  <Route index element={<BlogDetail/>}/>
+                  <Route path='edit-update-post' element={<EditBlog/>}/>
+              </Route>
           </Route>
           <Route path='help' element={<Help/>}/>
           <Route path='new-post' element={<Post/>}/>
