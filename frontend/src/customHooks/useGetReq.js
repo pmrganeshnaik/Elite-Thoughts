@@ -4,21 +4,24 @@ import axios from "axios";
 function useGetReq() {
   const [data, setData] = useState([]);
   const url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${url}/posts`);
-        setData(response.data.Data); 
+      
+        const fetchedData = response.data.Data;
+        setData(Array.isArray(fetchedData) ? fetchedData : []);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setData([]); 
       }
     };
 
     fetchData();
-  },[]);
+  }, []);
 
-  return data; 
+  return data;
 }
 
 export default useGetReq;
