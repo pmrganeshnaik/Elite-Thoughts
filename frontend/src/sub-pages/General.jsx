@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import useGetReq from "../customHooks/useGetReq.js";
 
 function General() {
-  const data = useGetReq();
+  const {data} = useGetReq();
   const filterData = data.filter(d => d.category === "General");
   
   return (

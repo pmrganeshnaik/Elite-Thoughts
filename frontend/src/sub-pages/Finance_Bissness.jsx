@@ -1,9 +1,9 @@
 import React from 'react';
 import useGetReq from '../customHooks/useGetReq.js';
-import { Link } from 'react-router';
+import { Link } from "react-router-dom";
 
 function Finance_Business() {
-  const data = useGetReq();
+  const {data, loading} = useGetReq();
   const filterData = data.filter(d => d.category === "Finance-Business");
   
   return (

@@ -1,6 +1,5 @@
 import React from 'react'
-import BlogDetail from '../components/BlogDetail'
-import { Outlet } from 'react-router'
+import { Outlet } from 'react-router-dom'
 
 function FullBlogLayout() {
   return (

@@ -1,21 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import useGetById from "../customHooks/useGetById";
+import { useNavigate, useParams } from "react-router-dom";
+import useGetById from '../customHooks/useGetById.js'
 
 function BlogDetail() {
   const masterKey = "ganesh";
   const url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
   const navigate = useNavigate();
-  const {data, loading} = useGetById()
-
+  const { data, loading, id } = useGetById(); // Use the hook
+  console.log("Fetched Data:", data);
+  
   const handleDelete =  async (blogId) => {
    try {
     const response =  await axios.delete(`${url}/posts/${blogId}?key=${masterKey}`);
     if (response.status === 204) {
       alert("Post deleted successfully!");
       window.history.back();
-    }
+    } 
    } catch (error) {
     console.error("Error deleting post:", error);
     alert("Failed to delete post.");
@@ -100,7 +101,7 @@ function BlogDetail() {
                   {/* Update Icon Button */}
                   <button 
                     className="text-blue-500 p-2 rounded-full hover:bg-blue-100 transition-all duration-300 transform hover:scale-110"
-                    onClick={() => handleUpdate(blog.id)}
+                    onClick={() => handleUpdate(blog.id || id)}
                     title="Edit Blog"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import useGetReq from "../customHooks/useGetReq.js";
 
 function AllBlogs() {
-  const data = useGetReq();
+  const {data, loading} = useGetReq();
   
   return (
     <div className="container mx-auto px-4 py-8 ">

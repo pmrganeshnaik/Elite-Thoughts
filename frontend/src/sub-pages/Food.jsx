@@ -1,9 +1,9 @@
 import React from 'react';
 import useGetReq from '../customHooks/useGetReq.js';
-import { Link } from 'react-router';
+import { Link } from "react-router-dom";
 
 function Food() {
-  const data = useGetReq();
+  const {data} = useGetReq();
   const filterData = data.filter(d => d.category === "Food");
   
   return (
